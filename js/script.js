@@ -79,16 +79,27 @@ Nome: ${nome}
 E-mail: ${email}
 Telefone/WhatsApp: ${telefone}`;
 
-        if (typeof gtag === 'function') {
-            gtag('event', 'conversion', {
-                'send_to': 'AW-18472925320/GwEPCJ7Q84sdEIjxyehE'
-            });
-        }
+     const whatsappUrl =
+    `https://wa.me/5522999981984?text=${encodeURIComponent(mensagem)}`;
 
-        const whatsappUrl =
-            `https://wa.me/5522999981984?text=${encodeURIComponent(mensagem)}`;
+let whatsappAberto = false;
 
-        window.open(whatsappUrl, '_blank');
+function abrirWhatsApp() {
+    if (whatsappAberto) return;
+    whatsappAberto = true;
+    window.open(whatsappUrl, '_blank');
+}
+
+if (typeof gtag === 'function') {
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18472925320/GwEPCJ7Q84sdEIjxyehE',
+        'event_callback': abrirWhatsApp
+    });
+
+    setTimeout(abrirWhatsApp, 1500);
+} else {
+    abrirWhatsApp();
+}
     });
 }
 });
