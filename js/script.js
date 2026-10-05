@@ -71,9 +71,9 @@ if (form) {
         console.log('SUBMIT DISPAROU');
 console.log('gtag:', typeof gtag);
 
-        const nome = form.querySelector('#nome').value.trim();
-        const email = form.querySelector('#email').value.trim();
-        const telefone = form.querySelector('#telefone').value.trim();
+       const nome = form.querySelector('input[type="text"]').value.trim();
+const email = form.querySelector('input[type="email"]').value.trim();
+const telefone = form.querySelector('input[type="tel"]').value.trim();
 
         const mensagem = `Olá! Tenho interesse no imóvel em Búzios.
 
