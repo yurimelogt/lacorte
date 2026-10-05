@@ -64,29 +64,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Form Submission (Prevent default and show alert for demo)
     const form = document.querySelector('.lead-form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = form.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-            
-            btn.innerHTML = '<i class="ph-bold ph-spinner ph-spin"></i> Enviando...';
-            btn.style.opacity = '0.8';
-            
-            // Simulate API call
-            setTimeout(() => {
-                btn.innerHTML = '<i class="ph-bold ph-check"></i> Recebemos seu contato!';
-                btn.style.backgroundColor = 'var(--clr-accent)';
-                btn.style.color = '#fff';
-                
-                setTimeout(() => {
-                    form.reset();
-                    btn.innerHTML = originalText;
-                    btn.style.backgroundColor = '';
-                    btn.style.color = '';
-                    btn.style.opacity = '1';
-                }, 3000);
-            }, 1500);
-        });
-    }
+
+if (form) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nome = form.querySelector('#nome').value.trim();
+        const email = form.querySelector('#email').value.trim();
+        const telefone = form.querySelector('#telefone').value.trim();
+
+        const mensagem = `Olá! Tenho interesse no imóvel em Búzios.
+
+Nome: ${nome}
+E-mail: ${email}
+Telefone/WhatsApp: ${telefone}`;
+
+        if (typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+                'send_to': 'AW-18472925320/GwEPCJ7Q84sdEIjxyehE'
+            });
+        }
+
+        const whatsappUrl =
+            `https://wa.me/5522999981984?text=${encodeURIComponent(mensagem)}`;
+
+        window.open(whatsappUrl, '_blank');
+    });
+}
 });
