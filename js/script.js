@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
 if (form) {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+        console.log('SUBMIT DISPAROU');
+console.log('gtag:', typeof gtag);
 
         const nome = form.querySelector('#nome').value.trim();
         const email = form.querySelector('#email').value.trim();
